@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<div class="register-container">
+    <div class="register-form-wrapper">
+        <h2>Create Your Account</h2>
+        <form method="POST" class="register-form" enctype="multipart/form-data">
+            {% csrf_token %}
+            
+            <div class="form-section">
+                <h3>Basic Information</h3>
+                {{ form.username|crispy }}
+                {{ form.email|crispy }}
+                {{ form.password1|crispy }}
+                {{ form.password2|crispy }}
+            </div>
+
+            <div class="form-section">
+                <h3>Profile Details</h3>
+                {{ profile_form.birth_date|crispy }}
+                {{ profile_form.gender|crispy }}
+                {{ profile_form.looking_for|crispy }}
+                {{ profile_form.location|crispy }}
+            </div>
+
+            <div class="form-section">
+                <h3>About You</h3>
+                {{ profile_form.bio|crispy }}
+                {{ profile_form.interests|crispy }}
+            </div>
+
+            <div class="form-section">
+                <h3>Profile Photo</h3>
+                <div class="photo-upload-container">
+                    <input type="file" name="profile_photo" accept="image/*" id="photo-upload" class="form-control">
+                    <div id="photo-preview"></div>
+                </div>
+            </div>
+
+            <div class="form-actions">
+                <button type="submit" class="btn btn-primary btn-lg">Create Account</button>
+            </div>
+
+            <div class="form-footer">
+                Already have an account? <a href="{% url 'login' %}">Login here</a>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const photoUpload = document.getElementById('photo-upload');
+        const photoPreview = document.getElementById('photo-preview');
+
+        photoUpload.addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    photoPreview.innerHTML = `
+                        <div class="preview-image-container">
+                            <img src="${e.target.result}" class="preview-image">
+                            <button type="button" class="btn btn-sm btn-danger remove-preview">
+                                <i class="fas fa-times"></i>
+                            </button>
+                        </div>
+                    `;
+
+                    document.querySelector('.remove-preview').addEventListener('click', function() {
+                        photoUpload.value = '';
+                        photoPreview.innerHTML = '';
+                    });
+                }
+                reader.readAsDataURL(file);
+            }
+        });
+    });
+</script>
+{% endblock %}

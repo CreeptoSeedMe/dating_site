@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="chat-container">
+    <div class="conversations-list">
+        <h3>Your Conversations</h3>
+        <ul>
+            {% for conversation in conversations %}
+                <li>
+                    <a href="{% url 'conversation_detail' conversation.id %}">
+                        <div class="conversation-item">
+                            <img src="{{ conversation.get_other_user.profile.get_primary_photo.url }}" alt="Profile Photo" class="conversation-photo">
+                            <div class="conversation-info">
+                                <h4>{{ conversation.get_other_user.username }}</h4>
+                                <p class="last-message">{{ conversation.last_message.content|truncatewords:10 }}</p>
+                                <span class="timestamp">{{ conversation.last_message.timestamp|date:"M d, H:i" }}</span>
+                            </div>
+                        </div>
+                    </a>
+                </li>
+            {% empty %}
+                <p>No conversations yet. Start chatting with someone!</p>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+{% endblock %}

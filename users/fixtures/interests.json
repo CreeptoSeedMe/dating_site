@@ -1,0 +1,7 @@
+[
+    {"model": "users.interest", "pk": 1, "fields": {"name": "Music", "category": "Hobby"}},
+    {"model": "users.interest", "pk": 2, "fields": {"name": "Sports", "category": "Hobby"}},
+    {"model": "users.interest", "pk": 3, "fields": {"name": "Traveling", "category": "Hobby"}},
+    {"model": "users.interest", "pk": 4, "fields": {"name": "Cooking", "category": "Hobby"}},
+    {"model": "users.interest", "pk": 5, "fields": {"name": "Reading", "category": "Hobby"}}
+]

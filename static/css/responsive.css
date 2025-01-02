@@ -1,0 +1,135 @@
+@media (max-width: 576px) {  
+    .profile-container {  
+        padding: 10px;  
+    }  
+  
+    .profile-header {  
+        flex-direction: column;  
+    }  
+  
+    .profile-photos {  
+        grid-template-columns: 1fr;  
+    }  
+  
+    .browse-container {  
+        flex-direction: column;  
+    }  
+  
+    .filters-sidebar {  
+        width: 100%;  
+        margin-bottom: 20px;  
+    }  
+  
+    .profiles-grid {  
+        grid-template-columns: 1fr;  
+    }  
+  
+    .chat-container {  
+        flex-direction: column;  
+    }  
+  
+    .conversations-list {  
+        width: 100%;  
+        height: 200px;  
+        border-right: none;  
+        border-bottom: 1px solid #ddd;  
+    }  
+}  
+  
+/* Планшеты */  
+@media (min-width: 577px) and (max-width: 992px) {  
+    .profile-photos {  
+        grid-template-columns: repeat(2, 1fr);  
+    }  
+  
+    .profiles-grid {  
+        grid-template-columns: repeat(2, 1fr);  
+    }  
+  
+    .filters-sidebar {  
+        width: 250px;  
+    }  
+}  
+  
+/* Планшеты и небольшие десктопы */
+@media (min-width: 993px) and (max-width: 1200px) {
+    .profile-photos {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .profiles-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* Большие экраны */
+@media (min-width: 1201px) {
+    .container {
+        max-width: 1400px;
+    }
+
+    .profiles-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+/* Адаптивные настройки для форм */
+@media (max-width: 768px) {
+    .form-container {
+        width: 100%;
+        padding: 15px;
+    }
+
+    .form-group {
+        margin-bottom: 15px;
+    }
+
+    .input-group {
+        flex-direction: column;
+    }
+
+    .input-group > * {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+}
+
+/* Адаптивные настройки для чата */
+@media (max-width: 992px) {
+    .chat-interface {
+        grid-template-columns: 1fr;
+    }
+
+    .chat-sidebar {
+        display: none;
+    }
+
+    .chat-sidebar.active {
+        display: block;
+        position: fixed;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 1000;
+        background: white;
+    }
+
+    .message-input-container {
+        padding: 10px;
+    }
+}
+
+/* Адаптивные настройки для модальных окон */
+@media (max-width: 576px) {
+    .modal-dialog {
+        margin: 0;
+        width: 100%;
+        height: 100%;
+    }
+
+    .modal-content {
+        border-radius: 0;
+        height: 100%;
+    }
+}

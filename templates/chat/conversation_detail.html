@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="chat-container" data-conversation-id="{{ conversation.id }}">
+    <div class="chat-header">
+        <img src="{{ conversation.get_other_user.profile.get_primary_photo.url }}" alt="Profile Photo" class="chat-header-photo">
+        <h3>{{ conversation.get_other_user.username }}</h3>
+    </div>
+
+    <div class="messages-container">
+        {% for message in messages %}
+            <div class="message {% if message.sender == request.user.profile %}message-sent{% else %}message-received{% endif %}">
+                <div class="message-content">
+                    {% if message.attachment %}
+                        {% if message.attachment.url|lower|endswith:".jpg" or message.attachment.url|lower|endswith:".png" %}
+                            <img src="{{ message.attachment.url }}" class="message-image">
+                        {% else %}
+                            <a href="{{ message.attachment.url }}" class="message-attachment" target="_blank">Attachment</a>
+                        {% endif %}
+                    {% endif %}
+                    <p>{{ message.content }}</p>
+                    <span class="message-time">{{ message.timestamp|date:"M d, H:i" }}</span>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+    <form id="message-form" class="message-input-container">
+        {% csrf_token %}
+        <input type="text" name="content" id="message-input" placeholder="Type a message..." autocomplete="off" class="form-control">
+        <input type="file" name="attachment" id="image-upload" class="d-none">
+        <label for="image-upload" class="btn btn-secondary">
+            <i class="fas fa-paperclip"></i>
+        </label>
+        <button type="submit" class="btn btn-primary">
+            <i class="fas fa-paper-plane"></i>
+        </button>
+    </form>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'js/chat.js' %}"></script>
+{% endblock %}

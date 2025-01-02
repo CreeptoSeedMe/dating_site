@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="matches-container">
+    <h2>Your Matches</h2>
+    <div class="matches-grid">
+        {% for match in matches %}
+            <div class="match-card">
+                <img src="{{ match.get_other_user.profile.get_primary_photo.url }}" alt="{{ match.get_other_user.username }}">
+                <h3>{{ match.get_other_user.username }}</h3>
+                <p>{{ match.get_other_user.profile.location }}</p>
+                <a href="{% url 'conversation_detail' match.conversation.id %}" class="btn btn-primary">Message</a>
+            </div>
+        {% empty %}
+            <p>No matches yet. Start liking profiles to find your match!</p>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

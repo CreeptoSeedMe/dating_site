@@ -1,0 +1,21 @@
+<div class="profile-card">
+    <div class="profile-photo">
+        <img src="{{ profile.get_primary_photo.url }}" alt="{{ profile.user.username }}">
+    </div>
+    <div class="profile-info">
+        <h3>{{ profile.user.username }}, {{ profile.age }}</h3>
+        <p>{{ profile.location }}</p>
+        <p class="bio">{{ profile.bio|truncatewords:15 }}</p>
+        <div class="interests">
+            {% for interest in profile.interests.all %}
+                <span class="badge bg-primary">{{ interest.name }}</span>
+            {% endfor %}
+        </div>
+        <div class="profile-actions">
+            <button class="btn btn-primary like-button" data-profile-id="{{ profile.id }}">
+                <i class="fas fa-heart"></i> Like
+            </button>
+            <a href="{% url 'view_profile' profile.user.username %}" class="btn btn-secondary">View Profile</a>
+        </div>
+    </div>
+</div>
