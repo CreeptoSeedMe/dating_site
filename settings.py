@@ -24,6 +24,8 @@ INSTALLED_APPS = [
     # Third party apps
     'channels',
     'rest_framework',
+    'crispy_forms',
+    'crispy_bootstrap5',  # или 'crispy_bootstrap5' для Bootstrap 5
 
     # Local apps
     'users',
@@ -93,7 +95,7 @@ USE_I18N = True
 USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'  # Обратите внимание на слэш в конце
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
 ]
@@ -116,3 +118,6 @@ CHANNEL_LAYERS = {
 LOGIN_REDIRECT_URL = 'home'
 LOGOUT_REDIRECT_URL = 'login'
 LOGIN_URL = 'login'
+
+# Add crispy template pack setting
+CRISPY_TEMPLATE_PACK = 'bootstrap5'  # или 'bootstrap5' для Bootstrap 5

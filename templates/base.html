@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,14 +15,14 @@
             <a href="/" class="navbar-brand">Dating Site</a>
             <ul class="navbar-nav">
                 {% if user.is_authenticated %}
-                    <li><a href="{% url 'profile' %}">My Profile</a></li>
-                    <li><a href="{% url 'browse' %}">Browse</a></li>
-                    <li><a href="{% url 'matches' %}">Matches</a></li>
-                    <li><a href="{% url 'conversations' %}">Chat</a></li>
-                    <li><a href="{% url 'logout' %}">Logout</a></li>
+                    <li><a href="{% url 'users:profile' %}">My Profile</a></li>
+                    <li><a href="{% url 'matching:browse' %}">Browse</a></li>
+                    <li><a href="{% url 'matching:matches' %}">Matches</a></li>
+                    <li><a href="{% url 'chat:conversations' %}">Chat</a></li>
+                    <li><a href="{% url 'users:logout' %}">Logout</a></li>
                 {% else %}
-                    <li><a href="{% url 'login' %}">Login</a></li>
-                    <li><a href="{% url 'register' %}">Register</a></li>
+                    <li><a href="{% url 'users:login' %}">Login</a></li>
+                    <li><a href="{% url 'users:register' %}">Register</a></li>
                 {% endif %}
             </ul>
         </nav>

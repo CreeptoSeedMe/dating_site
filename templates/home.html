@@ -1,0 +1,25 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <div class="home-container">
+        <h1>Welcome to the Dating Site!</h1>
+        {% if user.is_authenticated %}
+            <p>Hello, {{ user.username }}! You are logged in.</p>
+            <p><a href="{% url 'users:profile' %}">Go to your profile</a></p>
+            <p><a href="{% url 'chat:chat_room' %}">Go to chat</a></p>
+            <p><a href="{% url 'users:logout' %}">Logout</a></p>
+        {% else %}
+            <p>You are not logged in.</p>
+            <p><a href="{% url 'users:login' %}">Login</a></p>
+            <p><a href="{% url 'users:register' %}">Register</a></p>
+        {% endif %}
+    </div>
+</body>
+</html>
